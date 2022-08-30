@@ -20,6 +20,8 @@
 <img alt="AWS" src="https://img.shields.io/badge/Amazon AWS-232F3E?style=for-the-badge&logo=Amazon AWS&logoColor=white">
 <img alt="IOS" src="https://img.shields.io/badge/iOS-000000?style=for-the-badge&logo=iOS&logoColor=white">
 
-## TODO
-- [ ] Elasticsearch 연동 
+## 📚 TODO
+### 셋팅
+- [ ] Elasticsearch 연동
+### 기능
 - [ ] 쓰레기통 데이터 조회 API 기능 개발
