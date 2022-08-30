@@ -19,3 +19,6 @@
 <img alt="ES" src="https://img.shields.io/badge/Elasticsearch-005571?style=for-the-badge&logo=Elasticsearch&logoColor=white">
 <img alt="AWS" src="https://img.shields.io/badge/Amazon AWS-232F3E?style=for-the-badge&logo=Amazon AWS&logoColor=white">
 <img alt="IOS" src="https://img.shields.io/badge/iOS-000000?style=for-the-badge&logo=iOS&logoColor=white">
+
+## TODO
+- [ ] Elasticsearch 연동 
