@@ -22,3 +22,4 @@
 
 ## TODO
 - [ ] Elasticsearch 연동 
+- [ ] 쓰레기통 데이터 조회 API 기능 개발
