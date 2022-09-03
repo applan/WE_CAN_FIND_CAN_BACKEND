@@ -4,6 +4,18 @@
 - 처리되지 않는 쓰레기로 수질오염을 야기시킴.
 - 쓰레기 통에 가득찬 쓰레기 악취로 인해서 국민들에게 불쾌감을 줌
 
+# 📈 PUSH LEVEL
+- Revert
+  - PUSH 롤백 
+- Core
+  - Project 설정, 연동, API 생성, (VO, DTO..) 생성
+- Fix
+  - Error 코드 수정
+- Refactor
+  - 의미나 동작에 영향을 주지 않는 상태에서 가독성, 재사용성 또는 구조, 코드 개선
+- Simple
+  - 간단한 수정 (README.md 등), 주석 등 간단한 수정
+
 # 🗃️ 정보
 
 ### 📅 · Period
@@ -33,7 +45,7 @@
 
 # 📚 TODO
 ### 셋팅
-- [ ] Elasticsearch 연동
+- [x] Elasticsearch 연동
 - [ ] model 생성
 
 ### 기능

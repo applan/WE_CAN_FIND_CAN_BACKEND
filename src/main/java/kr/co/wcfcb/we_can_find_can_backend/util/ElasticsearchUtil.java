@@ -26,7 +26,6 @@ public class ElasticsearchUtil {
     }
 
     public ElasticsearchClient getClient() {
-        System.out.println(this.client.toString());
         return this.client;
     }
 }
