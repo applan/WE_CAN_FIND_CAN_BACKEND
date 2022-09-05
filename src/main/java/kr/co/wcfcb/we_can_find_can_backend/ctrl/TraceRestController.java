@@ -8,6 +8,11 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
+/**
+ * 쓰레기 관련 처리 Controller 로직
+ * @author applan
+ * @version 1.0
+ */
 @RestController
 public class TraceRestController {
 

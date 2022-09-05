@@ -6,8 +6,9 @@ import kr.co.wcfcb.we_can_find_can_backend.domain.Trace;
 import java.util.List;
 
 /**
- * 쓰레기통&생활 데이터 처리 용 Service 로직
+ * 쓰레기 관련 처리 SERVICE 로직
  * @author applan
+ * @version 1.0
  */
 public interface TraceService {
 

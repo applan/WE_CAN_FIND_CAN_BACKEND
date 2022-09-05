@@ -8,8 +8,9 @@ import java.io.IOException;
 
 
 /**
- * 쓰레기통&생활 데이터 처리 용 Dao 비즈니스 로직
- * @Auth applan
+ * 쓰레기 관련 처리 DAO 로직
+ * @author applan
+ * @version 1.0
  */
 public interface TraceDao {
 
