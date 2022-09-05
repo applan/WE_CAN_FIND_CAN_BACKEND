@@ -1,9 +1,12 @@
 package kr.co.wcfcb.we_can_find_can_backend.util;
 
 import co.elastic.clients.elasticsearch.ElasticsearchClient;
+import co.elastic.clients.elasticsearch._types.GeoLocation;
+import co.elastic.clients.elasticsearch._types.LatLonGeoLocation;
 import co.elastic.clients.json.jackson.JacksonJsonpMapper;
 import co.elastic.clients.transport.ElasticsearchTransport;
 import co.elastic.clients.transport.rest_client.RestClientTransport;
+import kr.co.wcfcb.we_can_find_can_backend.domain.Location;
 import kr.co.wcfcb.we_can_find_can_backend.prop.ElasticsearchConf;
 import org.apache.http.HttpHost;
 import org.elasticsearch.client.RestClient;
@@ -27,5 +30,16 @@ public class ElasticsearchUtil {
 
     public ElasticsearchClient getClient() {
         return this.client;
+    }
+
+    public static LatLonGeoLocation caseLatLonGeoLocation(Location location) {
+        return LatLonGeoLocation.of(llgl -> llgl
+                .lon(location.getLon())
+                .lat(location.getLat())
+        );
+    }
+
+    public static GeoLocation caseGeoLocation(LatLonGeoLocation latLonGeoLocation) {
+        return GeoLocation.of(gl -> gl.latlon(latLonGeoLocation));
     }
 }
