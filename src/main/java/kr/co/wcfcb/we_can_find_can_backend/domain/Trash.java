@@ -1,6 +1,6 @@
 package kr.co.wcfcb.we_can_find_can_backend.domain;
 
-public class Trace {
+public class Trash {
 
     // 쓰레기통 위치 명(?)
     private String title;
@@ -53,10 +53,9 @@ public class Trace {
         return updDate;
     }
 
-    public Trace() {
-    }
+    public Trash() {}
 
-    public Trace(String title, String contents, Location location, String insDate, String updDate) {
+    public Trash(String title, String contents, Location location, String insDate, String updDate) {
         this.title = title;
         this.contents = contents;
         this.location = location;

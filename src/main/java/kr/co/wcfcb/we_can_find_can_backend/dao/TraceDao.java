@@ -2,7 +2,7 @@ package kr.co.wcfcb.we_can_find_can_backend.dao;
 
 import co.elastic.clients.elasticsearch.core.SearchRequest;
 import co.elastic.clients.elasticsearch.core.SearchResponse;
-import kr.co.wcfcb.we_can_find_can_backend.domain.Trace;
+import kr.co.wcfcb.we_can_find_can_backend.domain.Trash;
 
 import java.io.IOException;
 
@@ -19,6 +19,6 @@ public interface TraceDao {
      * @param searchRequest - 조회 조건을 담은 request 객체
      * @return 위치에 따른 데이터 결과
      */
-    SearchResponse<Trace> findByLocation(SearchRequest searchRequest) throws IOException;
+    SearchResponse<Trash> findByLocation(SearchRequest searchRequest) throws IOException;
 
 }

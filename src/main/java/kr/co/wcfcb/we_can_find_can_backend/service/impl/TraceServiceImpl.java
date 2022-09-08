@@ -8,7 +8,7 @@ import co.elastic.clients.elasticsearch.core.SearchRequest;
 import co.elastic.clients.elasticsearch.core.SearchResponse;
 import kr.co.wcfcb.we_can_find_can_backend.dao.TraceDao;
 import kr.co.wcfcb.we_can_find_can_backend.domain.Location;
-import kr.co.wcfcb.we_can_find_can_backend.domain.Trace;
+import kr.co.wcfcb.we_can_find_can_backend.domain.Trash;
 import kr.co.wcfcb.we_can_find_can_backend.prop.ElasticsearchIndex;
 import kr.co.wcfcb.we_can_find_can_backend.service.TraceService;
 import kr.co.wcfcb.we_can_find_can_backend.util.ElasticsearchUtil;
@@ -24,8 +24,8 @@ public class TraceServiceImpl implements TraceService {
     public TraceServiceImpl(TraceDao traceDao) {this.traceDao = traceDao;}
 
     @Override
-    public List<Trace> findByLocation(Location location) {
-        List<Trace> traceList = null;
+    public List<Trash> findByLocation(Location location) {
+        List<Trash> traceList = null;
         try{
             // https://www.elastic.co/guide/en/elasticsearch/client/java-api-client/current/searching.html
             LatLonGeoLocation llgl = ElasticsearchUtil.caseLatLonGeoLocation(location);
@@ -36,7 +36,7 @@ public class TraceServiceImpl implements TraceService {
             SearchRequest sr = SearchRequest.of(s -> s
                     .index(ElasticsearchIndex.TRACE_INDEX)
                     .query(gdq));
-            SearchResponse<Trace> searchResponse = traceDao.findByLocation(sr);
+            SearchResponse<Trash> searchResponse = traceDao.findByLocation(sr);
         }catch (Exception e) {
             e.printStackTrace();
         }
