@@ -2,7 +2,7 @@ package kr.co.wcfcb.we_can_find_can_backend.ctrl;
 
 import kr.co.wcfcb.we_can_find_can_backend.domain.Location;
 import kr.co.wcfcb.we_can_find_can_backend.domain.Trash;
-import kr.co.wcfcb.we_can_find_can_backend.service.TraceService;
+import kr.co.wcfcb.we_can_find_can_backend.service.TrashService;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -14,14 +14,14 @@ import java.util.List;
  * @version 1.0
  */
 @RestController
-public class TraceRestController {
+public class TrashRestController {
 
-    private final TraceService traceService;
+    private final TrashService trashService;
 
-    public TraceRestController(TraceService traceService) {this.traceService = traceService;}
+    public TrashRestController(TrashService trashService) {this.trashService = trashService;}
 
     @GetMapping("/get/trace")
     public List<Trash> findByLocation(Location location) {
-        return traceService.findByLocation(location);
+        return trashService.findByLocation(location);
     }
 }

@@ -6,22 +6,22 @@ import co.elastic.clients.elasticsearch._types.query_dsl.GeoDistanceQuery;
 import co.elastic.clients.elasticsearch._types.query_dsl.Query;
 import co.elastic.clients.elasticsearch.core.SearchRequest;
 import co.elastic.clients.elasticsearch.core.SearchResponse;
-import kr.co.wcfcb.we_can_find_can_backend.dao.TraceDao;
+import kr.co.wcfcb.we_can_find_can_backend.dao.TrashDao;
 import kr.co.wcfcb.we_can_find_can_backend.domain.Location;
 import kr.co.wcfcb.we_can_find_can_backend.domain.Trash;
 import kr.co.wcfcb.we_can_find_can_backend.prop.ElasticsearchIndex;
-import kr.co.wcfcb.we_can_find_can_backend.service.TraceService;
+import kr.co.wcfcb.we_can_find_can_backend.service.TrashService;
 import kr.co.wcfcb.we_can_find_can_backend.util.ElasticsearchUtil;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
-public class TraceServiceImpl implements TraceService {
+public class TrashServiceImpl implements TrashService {
 
-    private final TraceDao traceDao;
+    private final TrashDao trashDao;
 
-    public TraceServiceImpl(TraceDao traceDao) {this.traceDao = traceDao;}
+    public TrashServiceImpl(TrashDao trashDao) {this.trashDao = trashDao;}
 
     @Override
     public List<Trash> findByLocation(Location location) {
@@ -36,7 +36,7 @@ public class TraceServiceImpl implements TraceService {
             SearchRequest sr = SearchRequest.of(s -> s
                     .index(ElasticsearchIndex.TRACE_INDEX)
                     .query(gdq));
-            SearchResponse<Trash> searchResponse = traceDao.findByLocation(sr);
+            SearchResponse<Trash> searchResponse = trashDao.findByLocation(sr);
         }catch (Exception e) {
             e.printStackTrace();
         }

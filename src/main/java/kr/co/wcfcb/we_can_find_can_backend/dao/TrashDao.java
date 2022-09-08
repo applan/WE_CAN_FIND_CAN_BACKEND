@@ -12,7 +12,7 @@ import java.io.IOException;
  * @author applan
  * @version 1.0
  */
-public interface TraceDao {
+public interface TrashDao {
 
     /**
      * 쓰레기통&생활 쓰레기 목록 조회
