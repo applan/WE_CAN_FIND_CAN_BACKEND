@@ -4,6 +4,7 @@ import kr.co.wcfcb.we_can_find_can_backend.domain.Location;
 import kr.co.wcfcb.we_can_find_can_backend.domain.Trash;
 import kr.co.wcfcb.we_can_find_can_backend.service.TrashService;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
@@ -20,8 +21,8 @@ public class TrashRestController {
 
     public TrashRestController(TrashService trashService) {this.trashService = trashService;}
 
-    @GetMapping("/get/trash")
-    public List<Trash> findByLocation(Location location) {
+    @GetMapping("/trash/get")
+    public List<Trash> findByLocation(@RequestParam() Location location) {
         return trashService.findByLocation(location);
     }
 }
