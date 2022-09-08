@@ -20,7 +20,7 @@ public class TrashRestController {
 
     public TrashRestController(TrashService trashService) {this.trashService = trashService;}
 
-    @GetMapping("/get/trace")
+    @GetMapping("/get/trash")
     public List<Trash> findByLocation(Location location) {
         return trashService.findByLocation(location);
     }
