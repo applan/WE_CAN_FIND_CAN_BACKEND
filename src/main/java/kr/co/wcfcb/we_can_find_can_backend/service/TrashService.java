@@ -10,7 +10,7 @@ import java.util.List;
  * @author applan
  * @version 1.0
  */
-public interface TraceService {
+public interface TrashService {
 
     /**
      * 쓰레기통&생활 쓰레기 목록 조회
