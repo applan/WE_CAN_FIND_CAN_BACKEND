@@ -16,7 +16,7 @@ public class Trash {
     private String insDate;
     // 수정일
     private String updDate;
-
+    // 쓰레기 타입 (생활, 쓰레기통)
     private Type type;
 
     public void setTitle(String title) {
