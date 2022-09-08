@@ -1,7 +1,7 @@
 package kr.co.wcfcb.we_can_find_can_backend.service;
 
 import kr.co.wcfcb.we_can_find_can_backend.domain.Location;
-import kr.co.wcfcb.we_can_find_can_backend.domain.Trace;
+import kr.co.wcfcb.we_can_find_can_backend.domain.Trash;
 
 import java.util.List;
 
@@ -17,6 +17,6 @@ public interface TraceService {
      * @param location - 위치 정보
      * @return 위치에 따른 데이터 결과
      */
-    List<Trace> findByLocation(Location location);
+    List<Trash> findByLocation(Location location);
 
 }
