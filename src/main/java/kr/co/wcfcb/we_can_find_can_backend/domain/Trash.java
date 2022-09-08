@@ -2,6 +2,10 @@ package kr.co.wcfcb.we_can_find_can_backend.domain;
 
 public class Trash {
 
+    enum Type{
+        LIVING, CAN
+    }
+
     // 쓰레기통 위치 명(?)
     private String title;
     // 비고
@@ -12,6 +16,8 @@ public class Trash {
     private String insDate;
     // 수정일
     private String updDate;
+
+    private Type type;
 
     public void setTitle(String title) {
         this.title = title;
@@ -33,9 +39,11 @@ public class Trash {
         this.updDate = updDate;
     }
 
-    public String getTitle() {
-        return title;
+    public void setType(Type type) {
+        this.type = type;
     }
+
+    public String getTitle() {return title;}
 
     public String getContents() {
         return contents;
@@ -53,13 +61,16 @@ public class Trash {
         return updDate;
     }
 
+    public Type getType() {return type;}
+
     public Trash() {}
 
-    public Trash(String title, String contents, Location location, String insDate, String updDate) {
+    public Trash(String title, String contents, Location location, String insDate, String updDate, Type type) {
         this.title = title;
         this.contents = contents;
         this.location = location;
         this.insDate = insDate;
         this.updDate = updDate;
+        this.type = type;
     }
 }
