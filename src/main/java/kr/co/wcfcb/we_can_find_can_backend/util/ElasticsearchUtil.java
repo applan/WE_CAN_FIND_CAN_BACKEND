@@ -51,7 +51,7 @@ public class ElasticsearchUtil {
      * Elasticsearch 인덱스 생성
      * @param indexName - 생성할 인덱스 명
      * @param indexFileName - 생성할 익덱스 셋팅, 맵핑 파일
-     * @throws Exception - 종합 에러 
+     * @throws Exception - 종합 에러
      */
     public void createIndex(String indexName, String indexFileName) throws Exception {
         log.info("[CREATE]" + indexName + " CHECK...");
