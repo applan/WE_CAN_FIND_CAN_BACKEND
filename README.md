@@ -5,12 +5,12 @@
 - 쓰레기 통에 가득찬 쓰레기 악취로 인해서 국민들에게 불쾌감을 줌
 
 # 👥 · Members
-| Name                                       | Position |
-|--------------------------------------------|----------|
-| [NooryKwon](https://github.com/NooryKwon)  | BACKEND  |
-| [applan](https://github.com/applan)        | BACKEND  |
-| [Jun Shin](https://github.com/greenthings) | MOBILE   |
-| [hhp227](https://github.com/hhp227)        | MOBILE   |
+| Name                                        | Position |
+|---------------------------------------------|----------|
+| [NooryKwon](https://github.com/noory-kwon)  | BACKEND  |
+| [applan](https://github.com/applan)         | BACKEND  |
+| [Jun Shin](https://github.com/greenthings)  | MOBILE   |
+| [hhp227](https://github.com/hhp227)         | MOBILE   |
 
 # 📅 · 기간
 - 2022.09.16 ~ 2022.09.18
@@ -60,8 +60,10 @@
 - [x] model 생성
   - [x] Trash (쓰레기)
   - [ ] Report (신고 데이터)
-- [ ] Runner 생성 후 
+- [x] Runner 생성 후
   - [ ] Elasticsearch 인덱스 자동 생성 
+    - [x] 쓰레기
+    - [ ] 신고
 
 ### 기능
 - [ ] 쓰레기통 데이터 조회 API 기능 개발
