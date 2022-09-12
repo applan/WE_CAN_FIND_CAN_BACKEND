@@ -20,6 +20,11 @@ public class TrashRestController {
 
     public TrashRestController(TrashService trashService) {this.trashService = trashService;}
 
+    /**
+     * 위치에 따른 조회
+     * @param location - 사용자 위치 정보
+     * @return 사용자 위치 기준 
+     */
     @GetMapping("/get")
     public List<Trash> findByLocation(@RequestParam() Location location) {
         return trashService.findByLocation(location);
