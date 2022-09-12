@@ -1,0 +1,45 @@
+{
+  "settings": {
+    "analysis": {
+      "tokenizer": {
+        "nori_user_dict": {
+          "type": "nori_tokenizer",
+          "decompound_mode": "mixed",
+          "user_dictionary": "userdict.txt"
+        }
+      },
+      "analyzer": {
+        "my_nori_analyzer" : {
+          "type" : "custom",
+          "tokenizer": "nori_user_dict"
+        }
+      }
+    },
+    "number_of_shards": 1,
+    "number_of_replicas": 0
+  },
+  "mappings": {
+    "properties": {
+      "title": {
+        "type": "text",
+        "analyzer": "my_nori_analyzer"
+      },
+      "contents": {
+        "type": "text",
+        "analyzer": "my_nori_analyzer"
+      },
+      "location": {
+        "type": "geo_point"
+      },
+      "ins_date": {
+        "type": "text"
+      },
+      "upd_date": {
+        "type": "text"
+      },
+      "type": {
+        "type": "keyword"
+      }
+    }
+  }
+}
