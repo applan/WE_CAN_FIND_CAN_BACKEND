@@ -42,8 +42,6 @@ public class TrashServiceImpl implements TrashService {
         }
         return traceList;
     }
-<<<<<<< HEAD
-=======
     
     @Override
     public void addByLocation(Location location) {
@@ -66,5 +64,4 @@ public class TrashServiceImpl implements TrashService {
     	}
     	
     }
->>>>>>> branch 'noorykwon' of https://github.com/applan/WE_CAN_FIND_CAN_BACKEND.git
 }

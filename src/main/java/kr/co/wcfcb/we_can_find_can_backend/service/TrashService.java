@@ -18,8 +18,6 @@ public interface TrashService {
      * @return 위치에 따른 데이터 결과
      */
     List<Trash> findByLocation(Location location);
-<<<<<<< HEAD
-=======
     
     /**
      * 쓰레기통&생활 쓰레기 위치 추가
@@ -32,6 +30,4 @@ public interface TrashService {
      * @param location
      */
     void updateByLocation(Location location);
->>>>>>> branch 'noorykwon' of https://github.com/applan/WE_CAN_FIND_CAN_BACKEND.git
-
 }
