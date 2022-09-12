@@ -1,9 +1,9 @@
 package kr.co.wcfcb.we_can_find_can_backend.service;
 
+import java.util.List;
+
 import kr.co.wcfcb.we_can_find_can_backend.domain.Location;
 import kr.co.wcfcb.we_can_find_can_backend.domain.Trash;
-
-import java.util.List;
 
 /**
  * 쓰레기 관련 처리 SERVICE 로직
@@ -18,5 +18,9 @@ public interface TraceService {
      * @return 위치에 따른 데이터 결과
      */
     List<Trash> findByLocation(Location location);
+    
+    void addByLocation(Location location);
+    
+    void updateByLocation(Location location);
 
 }
