@@ -10,20 +10,21 @@ import co.elastic.clients.transport.rest_client.RestClientTransport;
 import kr.co.wcfcb.we_can_find_can_backend.domain.Location;
 import kr.co.wcfcb.we_can_find_can_backend.prop.ElasticsearchConf;
 import kr.co.wcfcb.we_can_find_can_backend.prop.ElasticsearchIndex;
-import lombok.extern.slf4j.Slf4j;
 import org.apache.http.HttpHost;
 import org.elasticsearch.client.RestClient;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.stereotype.Component;
 
 import java.io.InputStream;
 
 
-@Slf4j
 @Component
 public class ElasticsearchUtil {
 
     private final ElasticsearchClient client;
+    private final Logger logger;
 
     /**
      * Elasticsearch Client 생성
@@ -37,6 +38,7 @@ public class ElasticsearchUtil {
         ElasticsearchTransport transport = new RestClientTransport(
                 restClient, new JacksonJsonpMapper());
         client = new ElasticsearchClient(transport);
+        this.logger = LoggerFactory.getLogger(getClass());
     }
 
     /**
@@ -54,15 +56,15 @@ public class ElasticsearchUtil {
      * @throws Exception - 종합 에러
      */
     public void createIndex(String indexName, String indexFileName) throws Exception {
-        log.info("[CREATE]" + indexName + " CHECK...");
+        logger.info("[CREATE]" + indexName + " CHECK...");
         if(this.client.indices().exists(e -> e.index(indexName)).value()){
-            log.info("[CREATE]" + indexName + " EXIST!");
+            logger.info("[CREATE]" + indexName + " EXIST!");
         }else{
             ClassPathResource classPathResource = new ClassPathResource(indexFileName);
             InputStream trashIndexFile = classPathResource.getInputStream();
             CreateIndexRequest rq = CreateIndexRequest.of(b -> b.index(ElasticsearchIndex.TRACE_INDEX).withJson(trashIndexFile));
             if(this.client.indices().create(rq).acknowledged()){
-                log.info("[CREATE]" + indexName + " CREATE SUCCESS");
+                logger.info("[CREATE]" + indexName + " CREATE SUCCESS");
             }
         }
     }
