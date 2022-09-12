@@ -25,7 +25,7 @@ public class TrashRestController {
      * @param location - 사용자 위치 정보
      * @return 사용자 위치 기준 
      */
-    @GetMapping("/get")
+    @GetMapping()
     public List<Trash> findByLocation(@RequestParam() Location location) {
         return trashService.findByLocation(location);
     }
@@ -34,7 +34,7 @@ public class TrashRestController {
      * 쓰레기통 정보 생성
      * @param trash - 쓰레기통 관련 정보
      */
-    @PutMapping("/put")
+    @PutMapping()
     public void addByLocation(@RequestParam() Trash trash) {
         trashService.addByTrash(trash);
     }
@@ -43,7 +43,7 @@ public class TrashRestController {
      * 쓰레기통 정보 수정
      * @param trash - 쓰레기통 관련 정보
      */
-    @PostMapping("/post")
+    @PostMapping()
     public void updateByLocation(@RequestParam() Trash trash) {
         trashService.updateByTrash(trash);
     }
