@@ -47,7 +47,6 @@ public class TrashServiceImpl implements TrashService {
     public void addByTrash(Trash trash) {
     	try {
     		
-    		
     	}catch (Exception e){
             e.printStackTrace();
     	}
