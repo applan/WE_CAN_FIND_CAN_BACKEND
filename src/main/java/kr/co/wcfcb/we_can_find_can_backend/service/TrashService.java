@@ -18,5 +18,16 @@ public interface TrashService {
      * @return 위치에 따른 데이터 결과
      */
     List<Trash> findByLocation(Location location);
+    
+    /**
+     * 쓰레기통&생활 쓰레기 위치 추가
+     * @param location
+     */
+    void addByLocation(Location location);
 
+    /**
+     * 쓰레기통&생활 쓰레기 정보 수정
+     * @param location
+     */
+    void updateByLocation(Location location);
 }

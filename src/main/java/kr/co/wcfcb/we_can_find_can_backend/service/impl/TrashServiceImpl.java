@@ -42,4 +42,26 @@ public class TrashServiceImpl implements TrashService {
         }
         return traceList;
     }
+    
+    @Override
+    public void addByLocation(Location location) {
+    	try {
+            LatLonGeoLocation llgl = ElasticsearchUtil.caseLatLonGeoLocation(location);
+            GeoLocation gl = ElasticsearchUtil.caseGeoLocation(llgl);
+    		
+    	}catch (Exception e){
+    		
+    	}
+    	
+    }
+    
+    @Override
+    public void updateByLocation(Location location) {
+    	try {
+    		
+    	}catch (Exception e){
+    		
+    	}
+    	
+    }
 }
