@@ -6,22 +6,22 @@ import co.elastic.clients.elasticsearch._types.query_dsl.GeoDistanceQuery;
 import co.elastic.clients.elasticsearch._types.query_dsl.Query;
 import co.elastic.clients.elasticsearch.core.SearchRequest;
 import co.elastic.clients.elasticsearch.core.SearchResponse;
-import kr.co.wcfcb.we_can_find_can_backend.dao.TrashDao;
+import kr.co.wcfcb.we_can_find_can_backend.dao.TraceDao;
 import kr.co.wcfcb.we_can_find_can_backend.domain.Location;
 import kr.co.wcfcb.we_can_find_can_backend.domain.Trash;
 import kr.co.wcfcb.we_can_find_can_backend.prop.ElasticsearchIndex;
-import kr.co.wcfcb.we_can_find_can_backend.service.TrashService;
+import kr.co.wcfcb.we_can_find_can_backend.service.TraceService;
 import kr.co.wcfcb.we_can_find_can_backend.util.ElasticsearchUtil;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
-public class TrashServiceImpl implements TrashService {
+public class TraceServiceImpl implements TraceService {
 
-    private final TrashDao trashDao;
+    private final TraceDao traceDao;
 
-    public TrashServiceImpl(TrashDao trashDao) {this.trashDao = trashDao;}
+    public TraceServiceImpl(TraceDao traceDao) {this.traceDao = traceDao;}
 
     @Override
     public List<Trash> findByLocation(Location location) {
@@ -36,14 +36,12 @@ public class TrashServiceImpl implements TrashService {
             SearchRequest sr = SearchRequest.of(s -> s
                     .index(ElasticsearchIndex.TRACE_INDEX)
                     .query(gdq));
-            SearchResponse<Trash> searchResponse = trashDao.findByLocation(sr);
+            SearchResponse<Trash> searchResponse = traceDao.findByLocation(sr);
         }catch (Exception e) {
             e.printStackTrace();
         }
         return traceList;
     }
-<<<<<<< HEAD
-=======
     
     @Override
     public void addByLocation(Location location) {
@@ -66,5 +64,4 @@ public class TrashServiceImpl implements TrashService {
     	}
     	
     }
->>>>>>> branch 'noorykwon' of https://github.com/applan/WE_CAN_FIND_CAN_BACKEND.git
 }
