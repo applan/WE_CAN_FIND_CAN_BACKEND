@@ -30,13 +30,21 @@ public class TrashRestController {
         return trashService.findByLocation(location);
     }
 
+    /**
+     * 쓰레기통 정보 생성
+     * @param trash - 쓰레기통 관련 정보
+     */
     @PutMapping("/put")
-    public void addByLocation(@RequestParam() Location location) {
-        trashService.addByLocation(location);
+    public void addByLocation(@RequestParam() Trash trash) {
+        trashService.addByTrash(trash);
     }
 
+    /**
+     * 쓰레기통 정보 수정
+     * @param trash - 쓰레기통 관련 정보
+     */
     @PostMapping("/post")
-    public void updateByLocation(@RequestParam() Location location) {
-        trashService.updateByLocation(location);
+    public void updateByLocation(@RequestParam() Trash trash) {
+        trashService.updateByTrash(trash);
     }
 }
