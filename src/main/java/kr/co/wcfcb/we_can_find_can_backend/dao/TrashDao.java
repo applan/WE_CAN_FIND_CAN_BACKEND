@@ -1,6 +1,8 @@
 package kr.co.wcfcb.we_can_find_can_backend.dao;
 
 import co.elastic.clients.elasticsearch.core.BulkRequest;
+import co.elastic.clients.elasticsearch.core.CreateRequest;
+import co.elastic.clients.elasticsearch.core.IndexRequest;
 import co.elastic.clients.elasticsearch.core.SearchRequest;
 import co.elastic.clients.elasticsearch.core.SearchResponse;
 import kr.co.wcfcb.we_can_find_can_backend.domain.Trash;
@@ -26,5 +28,5 @@ public interface TrashDao {
      * 쓰레기통&생활 쓰레기 폐기장소 추가
      * @param 
      */
-    void addByLocation(BulkRequest bulkRequest) throws IOException;
+    void addByLocation(IndexRequest<Trash> indexRequest) throws IOException;
 }
