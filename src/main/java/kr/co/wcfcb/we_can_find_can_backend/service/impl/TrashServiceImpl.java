@@ -4,7 +4,6 @@ import co.elastic.clients.elasticsearch._types.GeoLocation;
 import co.elastic.clients.elasticsearch._types.LatLonGeoLocation;
 import co.elastic.clients.elasticsearch._types.query_dsl.GeoDistanceQuery;
 import co.elastic.clients.elasticsearch._types.query_dsl.Query;
-import co.elastic.clients.elasticsearch.core.CreateRequest;
 import co.elastic.clients.elasticsearch.core.IndexRequest;
 import co.elastic.clients.elasticsearch.core.SearchRequest;
 import co.elastic.clients.elasticsearch.core.SearchResponse;
@@ -18,6 +17,8 @@ import kr.co.wcfcb.we_can_find_can_backend.service.TrashService;
 import kr.co.wcfcb.we_can_find_can_backend.util.ElasticsearchUtil;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -59,11 +60,15 @@ public class TrashServiceImpl implements TrashService {
     public void addByTrash(Trash trash) {
     	try {
     		//https://www.elastic.co/guide/en/elasticsearch/client/java-rest/current/java-rest-high-document-index.html
-    		IndexRequest<Trash> indexRequest = new IndexRequest(ElasticsearchIndex.TRACE_INDEX)
-    				.id("1")
-    				.source("title", "첫 쓰레기통 등록");
+            DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+            LocalDateTime now = LocalDateTime.now();
+            String nowStr = now.format(dtf);
+            IndexRequest indexRequest = IndexRequest.of(ir -> ir
+                    .id("1")
+                    .document(new Trash("첫 쓰레기통", "테스트", new Location(10.0, 11.0), nowStr, nowStr)));
+    		// IndexRequest<Trash> indexRequest = new IndexRequest(ElasticsearchIndex.TRACE_INDEX).id("1").source("title", "첫 쓰레기통 등록");
     		trashDao.addByLocation(indexRequest);
-    		
+
     	}catch (Exception e){
             e.printStackTrace();
     	}
@@ -74,9 +79,9 @@ public class TrashServiceImpl implements TrashService {
     public void updateByTrash(Trash trash) {
     	try {
     		//https://www.elastic.co/guide/en/elasticsearch/client/java-rest/current/java-rest-high-document-update.html#java-rest-high-document-update-request
-    		UpdateRequest request = new UpdateRequest<Trash>(
-    		        "posts", 
-    		        "1");   
+    		//UpdateRequest request = new UpdateRequest<Trash>(
+    		//        "posts",
+    		//        "1");
     		
     	}catch (Exception e){
             e.printStackTrace();
