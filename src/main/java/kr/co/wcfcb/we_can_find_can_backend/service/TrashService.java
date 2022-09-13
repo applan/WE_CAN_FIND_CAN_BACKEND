@@ -23,11 +23,11 @@ public interface TrashService {
      * 쓰레기통&생활 쓰레기 위치 추가
      * @param location
      */
-    void addByLocation(Location location);
+    void addByTrash(Trash trash);
 
     /**
      * 쓰레기통&생활 쓰레기 정보 수정
      * @param location
      */
-    void updateByLocation(Location location);
+    void updateByTrash(Trash trash);
 }
