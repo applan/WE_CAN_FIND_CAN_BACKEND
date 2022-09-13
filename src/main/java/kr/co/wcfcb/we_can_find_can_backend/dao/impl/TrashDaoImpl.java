@@ -1,5 +1,8 @@
 package kr.co.wcfcb.we_can_find_can_backend.dao.impl;
 
+import co.elastic.clients.elasticsearch.core.BulkRequest;
+import co.elastic.clients.elasticsearch.core.CreateRequest;
+import co.elastic.clients.elasticsearch.core.IndexRequest;
 import co.elastic.clients.elasticsearch.core.SearchRequest;
 import co.elastic.clients.elasticsearch.core.SearchResponse;
 import kr.co.wcfcb.we_can_find_can_backend.dao.TrashDao;
@@ -20,5 +23,10 @@ public class TrashDaoImpl implements TrashDao {
     @Override
     public SearchResponse<Trash> findByLocation(SearchRequest searchRequest) throws IOException {
         return elasticsearchUtil.getClient().search(searchRequest, Trash.class);
+    }
+    
+    @Override
+    public void addByLocation(IndexRequest<Trash> indexRequest) throws IOException {
+    	 elasticsearchUtil.getClient().index(indexRequest);
     }
 }
