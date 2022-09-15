@@ -31,10 +31,10 @@
       "location": {
         "type": "geo_point"
       },
-      "ins_date": {
+      "insDate": {
         "type": "text"
       },
-      "upd_date": {
+      "updDate": {
         "type": "text"
       },
       "type": {
