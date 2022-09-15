@@ -35,7 +35,7 @@ public class TrashRestController {
      * @param trash - 쓰레기통 관련 정보
      */
     @PutMapping()
-    public void addByLocation(@RequestParam() Trash trash) {
+    public void addByLocation(@RequestBody() Trash trash) {
         trashService.addByTrash(trash);
     }
 
@@ -44,7 +44,7 @@ public class TrashRestController {
      * @param trash - 쓰레기통 관련 정보
      */
     @PostMapping()
-    public void updateByLocation(@RequestParam() Trash trash) {
+    public void updateByLocation(@RequestBody() Trash trash) {
         trashService.updateByTrash(trash);
     }
 }
