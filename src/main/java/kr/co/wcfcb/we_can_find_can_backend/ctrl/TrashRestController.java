@@ -13,7 +13,7 @@ import java.util.List;
  * @version 1.0
  */
 @RestController
-@RequestMapping("/trash")
+@RequestMapping(value = "/trash", produces="application/json;charset=UTF-8")
 public class TrashRestController {
 
     private final TrashService trashService;
@@ -26,7 +26,7 @@ public class TrashRestController {
      * @return 사용자 위치 기준 
      */
     @GetMapping()
-    public List<Trash> findByLocation(@RequestParam() Location location) {
+    public List<Trash> findByLocation(Location location) {
         return trashService.findByLocation(location);
     }
 
