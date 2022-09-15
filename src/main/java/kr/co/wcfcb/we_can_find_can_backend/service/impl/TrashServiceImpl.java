@@ -38,6 +38,7 @@ public class TrashServiceImpl implements TrashService {
             GeoLocation gl = ElasticsearchUtil.caseGeoLocation(llgl);
             Query gdq = GeoDistanceQuery.of(g -> g
                     .distance("1km")
+                    .field("location")
                     .location(gl))._toQuery();
             SearchRequest sr = SearchRequest.of(s -> s
                     .index(ElasticsearchIndex.TRACE_INDEX)
