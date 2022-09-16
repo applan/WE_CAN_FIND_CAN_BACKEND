@@ -40,7 +40,7 @@ public class DefaultRunner implements ApplicationRunner {
     public void run(ApplicationArguments args) {
         try{
             elasticsearchUtil.createIndex(ElasticsearchIndex.TRACE_INDEX, "trash.json");
-            initTestData();
+            // initTestData();
 
         }catch (Exception e) {
             logger.error("RUNNER ERROR - " + e.getMessage());
