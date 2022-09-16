@@ -50,7 +50,7 @@ public class TrashServiceImpl implements TrashService {
                     .location(gl))._toQuery();
             SearchRequest sr = SearchRequest.of(s -> s
                     .index(ElasticsearchIndex.TRACE_INDEX)
-                    .query(gdq));
+                    .query(gdq).size(1000));
 
             logger.info("SearchRequest_ ####################");
             logger.info(sr.toString());
@@ -69,46 +69,46 @@ public class TrashServiceImpl implements TrashService {
         }
         return trashList;
     }
-    
+
     @Override
     public void addByTrash(Trash trash) {
-    	try {
-    		//https://www.elastic.co/guide/en/elasticsearch/client/java-rest/current/java-rest-high-document-index.html
+        try {
+            //https://www.elastic.co/guide/en/elasticsearch/client/java-rest/current/java-rest-high-document-index.html
             LocalDateTime now = LocalDateTime.now();
             String nowStr = now.format(ProjectProperties.DATE_TIME_FORMATTER);
             trash.setInsDate(nowStr);
             IndexRequest indexRequest = IndexRequest.of(ir -> ir
-            		.index(ElasticsearchIndex.TRACE_INDEX)
+                    .index(ElasticsearchIndex.TRACE_INDEX)
                     .document(trash));
-    		trashDao.addByTrash(indexRequest);
+            trashDao.addByTrash(indexRequest);
 
-    	}catch (Exception e){
+        }catch (Exception e){
             e.printStackTrace();
-    	}
-    	
+        }
+
     }
-    
+
     @Override
     public void updateByTrash(Trash trash) {
-    	try {
-    		//https://www.elastic.co/guide/en/elasticsearch/client/java-rest/current/java-rest-high-document-update.html#java-rest-high-document-update-request
-    		//UpdateRequest request = new UpdateRequest<Trash>(
-    		//        "posts",
-    		//        "1");
+        try {
+            //https://www.elastic.co/guide/en/elasticsearch/client/java-rest/current/java-rest-high-document-update.html#java-rest-high-document-update-request
+            //UpdateRequest request = new UpdateRequest<Trash>(
+            //        "posts",
+            //        "1");
             DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
             LocalDateTime now = LocalDateTime.now();
             String nowStr = now.format(dtf);
             trash.setUpdDate(nowStr);
             UpdateRequest updateRequest = UpdateRequest.of(ir -> ir
-            		.index(ElasticsearchIndex.TRACE_INDEX)
-            		.id(trash.getId())
-            		.doc(trash));
-    		trashDao.updateByTrash(updateRequest);
-    		
-    		
-    	}catch (Exception e){
+                    .index(ElasticsearchIndex.TRACE_INDEX)
+                    .id(trash.getId())
+                    .doc(trash));
+            trashDao.updateByTrash(updateRequest);
+
+
+        }catch (Exception e){
             e.printStackTrace();
-    	}
-    	
+        }
+
     }
 }
