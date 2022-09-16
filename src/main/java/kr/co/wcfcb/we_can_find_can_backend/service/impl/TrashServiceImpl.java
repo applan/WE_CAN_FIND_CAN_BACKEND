@@ -13,8 +13,11 @@ import kr.co.wcfcb.we_can_find_can_backend.dao.TrashDao;
 import kr.co.wcfcb.we_can_find_can_backend.domain.Location;
 import kr.co.wcfcb.we_can_find_can_backend.domain.Trash;
 import kr.co.wcfcb.we_can_find_can_backend.prop.ElasticsearchIndex;
+import kr.co.wcfcb.we_can_find_can_backend.prop.ProjectProperties;
 import kr.co.wcfcb.we_can_find_can_backend.service.TrashService;
 import kr.co.wcfcb.we_can_find_can_backend.util.ElasticsearchUtil;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
@@ -27,7 +30,12 @@ public class TrashServiceImpl implements TrashService {
 
     private final TrashDao trashDao;
 
-    public TrashServiceImpl(TrashDao trashDao) {this.trashDao = trashDao;}
+    private final Logger logger;
+
+    public TrashServiceImpl(TrashDao trashDao) {
+        this.trashDao = trashDao;
+        this.logger = LoggerFactory.getLogger(getClass());
+    }
 
     @Override
     public List<Trash> findByLocation(Location location) {
@@ -43,11 +51,16 @@ public class TrashServiceImpl implements TrashService {
             SearchRequest sr = SearchRequest.of(s -> s
                     .index(ElasticsearchIndex.TRACE_INDEX)
                     .query(gdq));
+
+            logger.info("SearchRequest_ ####################");
+            logger.info(sr.toString());
+            logger.info("SearchRequest_ ####################");
+
             SearchResponse<Trash> searchResponse = trashDao.findByLocation(sr);
 
-            List<Hit<Trash>> TrashHits = searchResponse.hits().hits();
+            List<Hit<Trash>> trashHits = searchResponse.hits().hits();
 
-            for(Hit<Trash> trashHit : TrashHits) {
+            for(Hit<Trash> trashHit : trashHits) {
                 trashList.add(trashHit.source());
             }
 
@@ -61,9 +74,8 @@ public class TrashServiceImpl implements TrashService {
     public void addByTrash(Trash trash) {
     	try {
     		//https://www.elastic.co/guide/en/elasticsearch/client/java-rest/current/java-rest-high-document-index.html
-            DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
             LocalDateTime now = LocalDateTime.now();
-            String nowStr = now.format(dtf);
+            String nowStr = now.format(ProjectProperties.DATE_TIME_FORMATTER);
             trash.setInsDate(nowStr);
             IndexRequest indexRequest = IndexRequest.of(ir -> ir
             		.index(ElasticsearchIndex.TRACE_INDEX)
@@ -91,7 +103,7 @@ public class TrashServiceImpl implements TrashService {
             		.index(ElasticsearchIndex.TRACE_INDEX)
             		.id(trash.getId())
             		.doc(trash));
-//    		trashDao.updateByTrash(updateRequest);
+    		trashDao.updateByTrash(updateRequest);
     		
     		
     	}catch (Exception e){
