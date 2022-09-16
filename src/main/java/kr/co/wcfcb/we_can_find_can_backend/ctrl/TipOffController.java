@@ -3,9 +3,11 @@ package kr.co.wcfcb.we_can_find_can_backend.ctrl;
 import kr.co.wcfcb.we_can_find_can_backend.domain.TipOff;
 import kr.co.wcfcb.we_can_find_can_backend.service.TipOffService;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 
@@ -15,7 +17,7 @@ import java.util.List;
  * @version 1.0
  */
 @RestController
-@RequestMapping("/tip-off")
+@RequestMapping(value = "/tip-off")
 public class TipOffController {
 
     private final TipOffService tipOffService;
@@ -32,5 +34,10 @@ public class TipOffController {
         return tipOffService.findByLocation(tipOff);
     }
 
+
+    @PostMapping(value = "/test")
+    public void showTestData(MultipartFile data) {
+        System.out.println(data.getOriginalFilename());
+    }
 
 }
