@@ -1,9 +1,17 @@
 package kr.co.wcfcb.we_can_find_can_backend.domain;
 
 public class Trash {
-	
+
+	enum Type {
+        CAN("can"), GARBASGE("garbasge");
+
+        private final String type;
+        Type(String type) {this.type = type;}
+        public String getType() {return type;}
+    }
     // 쓰레기통 위치 명(?)
     private String title;
+    private Type type;
     // 비고
     private String contents;
     // 위치 (경도, 위도)
@@ -34,7 +42,11 @@ public class Trash {
     public void setUpdDate(String updDate) {
         this.updDate = updDate;
     }
-    
+
+    public void setType(String type) {
+        this.type = Type.valueOf(type);
+    }
+
     public void set_index(String _index) {
     	this._index = _index;
     }
@@ -45,6 +57,10 @@ public class Trash {
 
     public String getContents() {
         return contents;
+    }
+
+    public Type getType() {
+        return type;
     }
 
     public Location getLocation() {
@@ -66,11 +82,12 @@ public class Trash {
     public Trash() {
     }
 
-    public Trash(String title, String contents, Location location, String insDate, String updDate) {
+    public Trash(String title, String contents, Location location, String insDate, String updDate, String type) {
         this.title = title;
         this.contents = contents;
         this.location = location;
         this.insDate = insDate;
         this.updDate = updDate;
+        this.type = Type.valueOf(type);
     }
 }
