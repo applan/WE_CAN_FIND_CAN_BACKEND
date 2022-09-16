@@ -27,12 +27,12 @@ public class TrashDaoImpl implements TrashDao {
     }
     
     @Override
-    public void addByTrash(IndexRequest<Trash> indexRequest) throws IOException {
+    public void saveTrash(IndexRequest<Trash> indexRequest) throws IOException {
     	 elasticsearchUtil.getClient().index(indexRequest);
     }
     
     @Override
-    public void updateByTrash(UpdateRequest<Trash, Trash> updateRequest) throws IOException {
+    public void updateTrash(UpdateRequest<Trash, Trash> updateRequest) throws IOException {
     	elasticsearchUtil.getClient().update(updateRequest, Trash.class);
     }
 }

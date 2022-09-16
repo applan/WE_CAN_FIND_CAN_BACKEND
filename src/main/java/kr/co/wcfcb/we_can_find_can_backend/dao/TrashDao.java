@@ -27,13 +27,13 @@ public interface TrashDao {
 
     /**
      * 쓰레기통&생활 쓰레기 폐기장소 추가
-     * @param IndexRequest - 추가정보를 담은 request 객체
+     * @param indexRequest - 추가정보를 담은 request 객체
      */
-    void addByTrash(IndexRequest<Trash> indexRequest) throws IOException;
+    void saveTrash(IndexRequest<Trash> indexRequest) throws IOException;
     
     /**
      * 쓰레기통&생활 쓰레기 폐기장소 수정
-     * @param IndexRequest - 수정할 객체의 id와 수정정보를 담은 request 객체
+     * @param updateRequest - 수정할 객체의 id와 수정정보를 담은 request 객체
      */
-    void updateByTrash(UpdateRequest<Trash, Trash> updateRequest) throws IOException;
+    void updateTrash(UpdateRequest<Trash, Trash> updateRequest) throws IOException;
 }
