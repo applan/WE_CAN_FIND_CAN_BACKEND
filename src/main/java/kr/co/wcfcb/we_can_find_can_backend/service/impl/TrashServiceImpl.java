@@ -68,7 +68,7 @@ public class TrashServiceImpl implements TrashService {
             IndexRequest indexRequest = IndexRequest.of(ir -> ir
             		.index(ElasticsearchIndex.TRACE_INDEX)
                     .document(trash));
-    		trashDao.addByLocation(indexRequest);
+    		trashDao.addByTrash(indexRequest);
 
     	}catch (Exception e){
             e.printStackTrace();
@@ -88,10 +88,10 @@ public class TrashServiceImpl implements TrashService {
             String nowStr = now.format(dtf);
             trash.setUpdDate(nowStr);
             UpdateRequest updateRequest = UpdateRequest.of(ir -> ir
-            		.id(trash.getId())
             		.index(ElasticsearchIndex.TRACE_INDEX)
+            		.id(trash.getId())
             		.doc(trash));
-//    		trashDao.addByLocation(updateRequest);
+//    		trashDao.updateByTrash(updateRequest);
     		
     		
     	}catch (Exception e){
