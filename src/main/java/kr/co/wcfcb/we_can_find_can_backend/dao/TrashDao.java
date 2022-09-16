@@ -5,6 +5,7 @@ import co.elastic.clients.elasticsearch.core.CreateRequest;
 import co.elastic.clients.elasticsearch.core.IndexRequest;
 import co.elastic.clients.elasticsearch.core.SearchRequest;
 import co.elastic.clients.elasticsearch.core.SearchResponse;
+import co.elastic.clients.elasticsearch.core.UpdateRequest;
 import kr.co.wcfcb.we_can_find_can_backend.domain.Trash;
 
 import java.io.IOException;
@@ -26,7 +27,13 @@ public interface TrashDao {
 
     /**
      * 쓰레기통&생활 쓰레기 폐기장소 추가
-     * @param 
+     * @param IndexRequest - 추가정보를 담은 request 객체
      */
-    void addByLocation(IndexRequest<Trash> indexRequest) throws IOException;
+    void addByTrash(IndexRequest<Trash> indexRequest) throws IOException;
+    
+    /**
+     * 쓰레기통&생활 쓰레기 폐기장소 수정
+     * @param IndexRequest - 수정할 객체의 id와 수정정보를 담은 request 객체
+     */
+    void updateByTrash(UpdateRequest<Trash, Trash> updateRequest) throws IOException;
 }

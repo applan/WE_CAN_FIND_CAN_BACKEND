@@ -5,6 +5,7 @@ import co.elastic.clients.elasticsearch.core.CreateRequest;
 import co.elastic.clients.elasticsearch.core.IndexRequest;
 import co.elastic.clients.elasticsearch.core.SearchRequest;
 import co.elastic.clients.elasticsearch.core.SearchResponse;
+import co.elastic.clients.elasticsearch.core.UpdateRequest;
 import kr.co.wcfcb.we_can_find_can_backend.dao.TrashDao;
 import kr.co.wcfcb.we_can_find_can_backend.domain.Trash;
 import kr.co.wcfcb.we_can_find_can_backend.util.ElasticsearchUtil;
@@ -26,7 +27,12 @@ public class TrashDaoImpl implements TrashDao {
     }
     
     @Override
-    public void addByLocation(IndexRequest<Trash> indexRequest) throws IOException {
+    public void addByTrash(IndexRequest<Trash> indexRequest) throws IOException {
     	 elasticsearchUtil.getClient().index(indexRequest);
+    }
+    
+    @Override
+    public void updateByTrash(UpdateRequest<Trash, Trash> updateRequest) throws IOException {
+    	elasticsearchUtil.getClient().update(updateRequest, Trash.class);
     }
 }

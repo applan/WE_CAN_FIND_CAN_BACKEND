@@ -78,9 +78,9 @@ public class TrashServiceImpl implements TrashService {
             String nowStr = now.format(ProjectProperties.DATE_TIME_FORMATTER);
             trash.setInsDate(nowStr);
             IndexRequest indexRequest = IndexRequest.of(ir -> ir
-            		.index("trash")
+            		.index(ElasticsearchIndex.TRACE_INDEX)
                     .document(trash));
-    		trashDao.addByLocation(indexRequest);
+    		trashDao.addByTrash(indexRequest);
 
     	}catch (Exception e){
             e.printStackTrace();
@@ -98,10 +98,12 @@ public class TrashServiceImpl implements TrashService {
             DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
             LocalDateTime now = LocalDateTime.now();
             String nowStr = now.format(dtf);
-//            trash.setUpdDate(nowStr);
-//            UpdateRequest updateRequest = UpdateRequest.of(ir -> ir
-//            		.index("trash");
-//    		trashDao.addByLocation(indexRequest);
+            trash.setUpdDate(nowStr);
+            UpdateRequest updateRequest = UpdateRequest.of(ir -> ir
+            		.index(ElasticsearchIndex.TRACE_INDEX)
+            		.id(trash.getId())
+            		.doc(trash));
+    		trashDao.updateByTrash(updateRequest);
     		
     		
     	}catch (Exception e){
