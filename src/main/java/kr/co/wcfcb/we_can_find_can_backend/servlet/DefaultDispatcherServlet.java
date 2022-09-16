@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebServlet(name = "defaultServlet", urlPatterns = "/*")
+// @WebServlet(name = "defaultServlet", urlPatterns = {"/trash", "/tip-off"})
 public class DefaultDispatcherServlet extends HttpServlet {
 
     private final Logger logger;
@@ -22,7 +22,7 @@ public class DefaultDispatcherServlet extends HttpServlet {
 
     private void showLogger(HttpServletRequest req) {
         String method = req.getMethod();
-        logger.info("[START]" + method + "WE_CAN_FIND_CAN ##############");
+        logger.info("[START][" + method + "]WE_CAN_FIND_CAN ##############");
         logger.info("Method \t\t\t:\t" + method);
         logger.info("Protocol \t\t\t:\t" + req.getProtocol());
         logger.info("RequestURI \t\t:\t" + req.getRequestURI());
@@ -36,12 +36,42 @@ public class DefaultDispatcherServlet extends HttpServlet {
         req.getHeaderNames().asIterator().forEachRemaining(
                 headerName -> logger.info(StringUtils.rightPad(headerName, 15, " ") + "\t:\t" + req.getHeader(headerName))
         );
-        logger.info("[END]" + method + "WE_CAN_FIND_CAN ##############\n");
+        logger.info("[END][" + method + "]WE_CAN_FIND_CAN ##############\n");
     }
 
     @Override
-    protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         showLogger(req);
-        super.service(req, resp);
+        super.doGet(req, resp);
+    }
+
+    @Override
+    protected long getLastModified(HttpServletRequest req) {
+        showLogger(req);
+        return super.getLastModified(req);
+    }
+
+    @Override
+    protected void doHead(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        showLogger(req);
+        super.doHead(req, resp);
+    }
+
+    @Override
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        showLogger(req);
+        super.doPost(req, resp);
+    }
+
+    @Override
+    protected void doPut(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        showLogger(req);
+        super.doPut(req, resp);
+    }
+
+    @Override
+    protected void doDelete(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        showLogger(req);
+        super.doDelete(req, resp);
     }
 }
