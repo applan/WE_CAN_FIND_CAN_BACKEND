@@ -2,6 +2,8 @@ package kr.co.wcfcb.we_can_find_can_backend.domain;
 
 public class Trash {
 	
+	// id
+	private String id;
     // 쓰레기통 위치 명(?)
     private String title;
     // 비고
@@ -12,8 +14,10 @@ public class Trash {
     private String insDate;
     // 수정일
     private String updDate;
-    // 인덱스
-    private String _index;
+    
+    public void setId(String id) {
+    	this.id = id ;
+    }
     
     public void setTitle(String title) {
         this.title = title;
@@ -34,11 +38,11 @@ public class Trash {
     public void setUpdDate(String updDate) {
         this.updDate = updDate;
     }
-    
-    public void set_index(String _index) {
-    	this._index = _index;
-    }
 
+    public String getId() {
+    	return id;
+    }
+    
     public String getTitle() {
         return title;
     }
@@ -46,6 +50,7 @@ public class Trash {
     public String getContents() {
         return contents;
     }
+    
 
     public Location getLocation() {
         return new Location(location.getLat(), location.getLon());
@@ -58,15 +63,12 @@ public class Trash {
     public String getUpdDate() {
         return updDate;
     }
-
-    public String get_index(String _index) {
-    	return _index;
-    }
     
     public Trash() {
     }
 
-    public Trash(String title, String contents, Location location, String insDate, String updDate) {
+    public Trash(String id, String title, String contents, Location location, String insDate, String updDate) {
+    	this.id = id;
         this.title = title;
         this.contents = contents;
         this.location = location;
