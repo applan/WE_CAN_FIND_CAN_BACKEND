@@ -2,8 +2,10 @@ package kr.co.wcfcb.we_can_find_can_backend.service.impl;
 
 import co.elastic.clients.elasticsearch._types.GeoLocation;
 import co.elastic.clients.elasticsearch._types.LatLonGeoLocation;
+import co.elastic.clients.elasticsearch._types.query_dsl.BoolQuery;
 import co.elastic.clients.elasticsearch._types.query_dsl.GeoDistanceQuery;
 import co.elastic.clients.elasticsearch._types.query_dsl.Query;
+import co.elastic.clients.elasticsearch._types.query_dsl.TermQuery;
 import co.elastic.clients.elasticsearch.core.IndexRequest;
 import co.elastic.clients.elasticsearch.core.SearchRequest;
 import co.elastic.clients.elasticsearch.core.SearchResponse;
@@ -71,7 +73,7 @@ public class TrashServiceImpl implements TrashService {
     }
 
     @Override
-    public void addByTrash(Trash trash) {
+    public void saveTrash(Trash trash) {
         try {
             //https://www.elastic.co/guide/en/elasticsearch/client/java-rest/current/java-rest-high-document-index.html
             LocalDateTime now = LocalDateTime.now();
@@ -80,7 +82,7 @@ public class TrashServiceImpl implements TrashService {
             IndexRequest indexRequest = IndexRequest.of(ir -> ir
                     .index(ElasticsearchIndex.TRACE_INDEX)
                     .document(trash));
-            trashDao.addByTrash(indexRequest);
+            trashDao.saveTrash(indexRequest);
 
         }catch (Exception e){
             e.printStackTrace();
@@ -89,21 +91,17 @@ public class TrashServiceImpl implements TrashService {
     }
 
     @Override
-    public void updateByTrash(Trash trash) {
+    public void updateTrash(Trash trash) {
         try {
             //https://www.elastic.co/guide/en/elasticsearch/client/java-rest/current/java-rest-high-document-update.html#java-rest-high-document-update-request
-            //UpdateRequest request = new UpdateRequest<Trash>(
-            //        "posts",
-            //        "1");
-            DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
             LocalDateTime now = LocalDateTime.now();
-            String nowStr = now.format(dtf);
+            String nowStr = now.format(ProjectProperties.DATE_TIME_FORMATTER);
             trash.setUpdDate(nowStr);
             UpdateRequest updateRequest = UpdateRequest.of(ir -> ir
                     .index(ElasticsearchIndex.TRACE_INDEX)
                     .id(trash.getId())
                     .doc(trash));
-            trashDao.updateByTrash(updateRequest);
+            trashDao.updateTrash(updateRequest);
 
 
         }catch (Exception e){
