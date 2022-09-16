@@ -30,6 +30,7 @@ public class DefaultRunner implements ApplicationRunner {
         }catch (Exception e) {
             logger.error("RUNNER ERROR - " + e.getMessage());
             SpringApplication.exit(context, () -> 0);
+            System.exit(0);
         }
     }
 }

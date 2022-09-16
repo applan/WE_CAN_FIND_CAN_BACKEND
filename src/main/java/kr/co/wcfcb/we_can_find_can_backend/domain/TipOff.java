@@ -6,9 +6,10 @@ public class TipOff {
      * 제보 타입
      * FULL - 쓰레기통 가득 참
      * MOVE - 쓰레기통 위치 이동
+     * DAMAGE - 쓰레기통 파손
      */
     enum Type {
-        FULL, MOVE
+        FULL, MOVE, DAMAGE
     }
 
     // 제보 제목
